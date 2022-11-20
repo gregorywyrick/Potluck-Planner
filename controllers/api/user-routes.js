@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Vote } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
     });
 });
 
+// get one user
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
@@ -22,7 +23,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ['id', 'title', 'post_url', 'created_at']
+        attributes: ['id', 'title',]
       },
       {
         model: Comment,
@@ -53,8 +54,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// create user
 router.post('/', (req, res) => {
-  // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -75,8 +76,8 @@ router.post('/', (req, res) => {
     });
 });
 
+// login
 router.post('/login', (req, res) => {
-  // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
     where: {
       email: req.body.email
@@ -104,6 +105,7 @@ router.post('/login', (req, res) => {
   });
 });
 
+// logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -115,7 +117,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.put('/:id', (req, res) => {
+/*router.put('/:id', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
 
   // pass in req.body instead to only update what's passed through
@@ -155,6 +157,6 @@ router.delete('/:id', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
+});  */
 
 module.exports = router;
