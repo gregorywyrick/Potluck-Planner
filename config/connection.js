@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 
+//dotenv added to hide password
 require('dotenv').config();
 
 // create connection to our db
