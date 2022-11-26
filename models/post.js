@@ -14,18 +14,18 @@ class Post extends Model {
         },
         attributes: [
           'id',
-          'post_url',
           'title',
+          'post_url',
           'created_at',
           [
-            sequelize.literal('(SELECT COUNT(*) FROM potluckDB WHERE post.id = potluckDB.post_id)'),
+            sequelize.literal('(SELECT * FROM post)'),
             ''
           ]
         ],
         include: [
           {
-            model: models.Comment,
-            attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+            model: models.Post,
+            attributes: ['id', 'title',  'post_url', 'created_at'],
             include: {
               model: models.User,
               attributes: ['username']
@@ -57,13 +57,6 @@ Post.init(
         isURL: true
       }
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    }
   },
   {
     sequelize,

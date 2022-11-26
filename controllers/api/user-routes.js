@@ -23,21 +23,11 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ['id', 'title',]
+        attributes: ['id', 'title', 'post_url', 'created_at']
       },
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'created_at'],
-        include: {
-          model: Post,
-          attributes: ['title']
-        }
-      },
-      {
-        model: Post,
-        attributes: ['title'],
-        through: Vote,
-        as: 'voted_posts'
+      { 
+        model: User,
+        attributes: ['username']
       }
     ]
   })
@@ -54,7 +44,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// create user
+// create user post
 router.post('/', (req, res) => {
   User.create({
     username: req.body.username,

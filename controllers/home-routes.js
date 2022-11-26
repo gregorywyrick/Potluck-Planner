@@ -8,30 +8,25 @@ router.get('/', (req, res) => {
    Post.findAll({
     attributes: [
       'id',
-      'post_url',
       'title',
+      'post_url',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM potluckDB WHERE post.id = potluckDB.post_id)'), '']
+      [sequelize.literal('(SELECT * FROM post )'), '']
     ],
     include: [
       {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
         model: User,
-        attributes: ['username']
+        attributes: 
+        [
+          'username',
+        ],
       }
     ]
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
 
-      res.render('homepage', {
+      res.render('main', {
         posts,
         loggedIn: req.session.loggedIn
       });
@@ -50,23 +45,18 @@ router.get('/post/:id', (req, res) => {
     },
     attributes: [
       'id',
-      'post_url',
       'title',
+      'post_url',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM potluckDB WHERE post.id = potluckDB.post_id)'), '']
+      [sequelize.literal('(SELECT post FROM post)'), '']
     ],
     include: [
       {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username']
-        }
-      },
-      {
         model: User,
-        attributes: ['username']
+        attributes: 
+        [
+          'username'
+        ]
       }
     ]
   })
