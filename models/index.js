@@ -1,5 +1,5 @@
-const Post = require('./post');
-const User = require('./user');
+const Post = require('./Post');
+const User = require('./User');
 
 User.hasMany(Post, {
     foreignKey: 'user_id'
@@ -9,7 +9,7 @@ User.hasOne(Post, {
     foreignKey: 'user_id'
   });
 
-  Post.belongsTo(User, {
+Post.belongsTo(User, {
     foreignKey: 'user_id'
   });
   
