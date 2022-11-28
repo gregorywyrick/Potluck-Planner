@@ -1,0 +1,41 @@
+<section>
+  <h2>What Are You Bringing?</h2>
+
+  <form class="new-post-form">
+    <div>
+      <label for="post-title">Dish</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-url">Picture/Recipe Link</Link></label>
+      <input id="post-url" name="post-url" />
+      {{!-- {{<div><button id="upload_widget" class="submit">Upload Files</button></div>
+      <div><img id="uploaded" /></div>}} --}}
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple >
+        <input type="submit" value="Upload Files" name="submit" class="submit">
+      </form>
+      <div><img id="uploaded_form" /></div>
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+{{#if posts.length}}
+<section>
+  <h2>What You've Signed Up For</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Change Dish</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/public/js/add-post.js"></script>
+<script src="/signed-uploads/public/js/uploadform.js" type="text/javascript"></script>
+{{!-- {{<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script src="/signed-uploads/public/js/" type="text/javascript"></script>}} --}}
