@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       'post_url',
       'title',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM potluckDB WHERE post.id = potluckDB.post_id)'), '']
+      
     ],
     include: [
       {
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
       'post_url',
       'title',
       'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM potluckDB WHERE post.id = potluckDB.post_id)'), '']
+      
     ],
     include: [
       {

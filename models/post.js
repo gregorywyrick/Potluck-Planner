@@ -17,10 +17,7 @@ class Post extends Model {
           'post_url',
           'title',
           'created_at',
-          [
-            sequelize.literal('(SELECT COUNT(*) FROM potluckDB WHERE post.id = potluckDB.post_id)'),
-            ''
-          ]
+          
         ],
         include: [
           {
@@ -73,4 +70,4 @@ Post.init(
   }
 );
 
-module.exports = Post;
+module.exports = Post; 
