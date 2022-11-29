@@ -91,7 +91,7 @@ router.post('/', withAuth, (req, res) => {
       res.status(500).json(err);
     });
 });
-router.put('/upvote', withAuth, (req, res) => {
+router.put('/like', withAuth, (req, res) => {
   Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
     .then(updatedVoteData => res.json(updatedVoteData))
     .catch(err => {

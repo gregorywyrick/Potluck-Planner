@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const signResponse = await fetch('/api/signuploadform');
+    const signResponse = await fetch('../controllers/signuploadform');
     const signData = await signResponse.json();
 
     const url = "https://api.cloudinary.com/v1_1/" + signData.cloudname + "/auto/upload";
