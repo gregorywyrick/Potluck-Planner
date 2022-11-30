@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const response = await fetch('/controllers/signuploadwidget');
+    const response = await fetch('controllers/signuploadwidget-routes.js');
     const data = await response.json();
 
     const options = {

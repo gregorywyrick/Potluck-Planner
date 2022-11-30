@@ -5,7 +5,7 @@
   <div>
     <textarea name="comment-body"></textarea>
   </div>
-
+<img data-src="https://res.cloudinary.com/dlod5jkqc/image/upload/c_limit,w_auto/dpr_auto/smiling_man.jpg">
   <div>
     <button type="button" class="like-btn">Like Recipe</button>
     <button type="submit">Add Suggestion</button>
@@ -18,4 +18,8 @@
 {{#if loggedIn}}
 <script src="/js/comment.js"></script>
 <script src="/js/upvote.js"></script>
+<script type="text/javascript">
+  var cl = cloudinary.Cloudinary.new({cloud_name: "dlod5jkqc"});
+  cl.responsive();
+</script>
 {{/if}}
