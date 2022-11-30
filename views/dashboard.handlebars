@@ -9,6 +9,13 @@
     <div>
       <label for="post-url">Picture/Recipe Link</Link></label>
       <input id="post-url" name="post-url" />
+      {{!-- {{<div><button id="upload_widget" class="submit">Upload Files</button></div>}} --}}
+      <div><img id="uploaded" /></div>
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple >
+        <input type="submit" value="Upload Files" name="submit" class="submit">
+      </form>
+      <div><img id="uploaded_form" /></div>
     </div>
     <button type="submit" class="btn">Create</button>
   </form>
@@ -29,3 +36,6 @@
 {{/if}}
 
 <script src="/js/add-post.js"></script>
+<script src="/js/uploadform.js" type="text/javascript"></script>
+{{!-- {{<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script src="/js/uploadwidget.js" type="text/javascript"></script>}} --}}
